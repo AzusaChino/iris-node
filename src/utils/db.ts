@@ -15,4 +15,4 @@ const pool = mysql.createPool({
   database: MYSQL_DATABASE,
 });
 
-export = pool;
+export default pool;

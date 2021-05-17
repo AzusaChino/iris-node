@@ -10,10 +10,10 @@ class RestResponse<T> {
   }
 }
 
-const ok = (data: any) => {
+export const ok = (data: any) => {
   return new RestResponse<any>(200, data, "success");
 };
 
-const fail = (message: string) => {
+export const fail = (message: string) => {
   return new RestResponse<null>(1001, null, message);
 };

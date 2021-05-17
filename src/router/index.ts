@@ -1,25 +1,9 @@
 import { Router } from "express";
-
+import LoginRouter from "./login";
 import DemoRouter from "./demo";
 
-class MasterRouter {
-  private _router = Router();
-  private _demo = DemoRouter;
+const AppRouter = Router();
 
-  get router() {
-    return this._router;
-  }
+AppRouter.use(DemoRouter, LoginRouter);
 
-  constructor() {
-    this._configure();
-  }
-
-  /**
-   * Connect routes to their matching routers.
-   */
-  private _configure() {
-    this._router.use("/demo", this._demo);
-  }
-}
-
-export = new MasterRouter().router;
+export = AppRouter;

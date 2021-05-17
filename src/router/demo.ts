@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response, Router } from "express";
 
-import Demo from "../controller/demo";
+import Demo from "../service/demo";
 
 class DemoRouter {
   private _router = Router();

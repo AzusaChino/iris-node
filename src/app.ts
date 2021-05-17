@@ -1,7 +1,7 @@
 import dotenv from "dotenv";
 import express, { Request, Response, NextFunction } from "express";
 
-import MasterRouter from "./router";
+import AppRouter from "./router";
 import ErrorHandler from "./model/error-handler";
 
 dotenv.config({
@@ -10,6 +10,8 @@ dotenv.config({
 
 const app = express();
 const port = process.env.APP_PORT || 5000;
+
+app.use(express.json());
 
 app.use(
   (err: ErrorHandler, req: Request, res: Response, next: NextFunction) => {
@@ -21,6 +23,6 @@ app.use(
   }
 );
 
-app.use("/api", MasterRouter);
+app.use("/api", AppRouter);
 
 app.listen(port, () => console.log(`> Listening on port ${port}`));

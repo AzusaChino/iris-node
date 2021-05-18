@@ -2,6 +2,7 @@ import { Router, Request, Response, NextFunction } from "express";
 import LoginRouter from "./login";
 import SectionRouter from "./section";
 import RecordRouter from "./record";
+import { fail } from "../common";
 
 const AppRouter = Router();
 
@@ -17,11 +18,7 @@ export const errorHandler = (
   if (res.headersSent) {
     next(err);
   }
-  res.status(500).json({
-    status: "error",
-    statusCode: 500,
-    message: err.message,
-  });
+  res.status(500).json(fail(err.message));
 };
 
 export default AppRouter;

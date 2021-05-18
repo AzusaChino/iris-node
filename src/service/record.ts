@@ -1,15 +1,14 @@
 import { Record } from "../model";
-import { CommonError } from "../common/errors";
-import pool from "../utils/db";
+import { query } from "../utils/db";
 
 const tableName = `tb_record`;
 
-export const queryRecord = (sid: string): Array<Record> => {
-  pool.query(`select * from ${tableName} where sid = ${sid}`, (err, res) => {
-    if (err) {
-      throw new CommonError(1004, "查询Record失败");
-    }
-    return res;
-  });
-  return [];
+export const queryRecord = (sid: string): Promise<Array<Record>> => {
+  return query(`select * from ${tableName} where sid = ${sid}`);
+};
+
+export const insertRecord = (record: Record): Promise<string> => {
+  return query(
+    `insert into ${tableName} values(${record.id},${record.sid}, ${record.name}, ${record.date}, ${record.season}, ${record.episode}, ${record.visual}, ${record.star}, ${record.comment})`
+  );
 };

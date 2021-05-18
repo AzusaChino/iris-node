@@ -13,6 +13,24 @@ const pool = mysql.createPool({
   user: MYSQL_USERNAME,
   password: MYSQL_PASSWORD,
   database: MYSQL_DATABASE,
+  debug: false,
 });
+
+export const query = <T>(sql: string): Promise<T> => {
+  return new Promise<T>((resolve, reject) => {
+    pool.getConnection((err, conn) => {
+      if (err) {
+        reject(err);
+      }
+      conn.query(sql, (err, rows) => {
+        if (err) {
+          reject(err);
+        }
+        resolve(rows);
+        conn.release();
+      });
+    });
+  });
+};
 
 export default pool;

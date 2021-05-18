@@ -15,5 +15,5 @@ export const ok = (data: any) => {
 };
 
 export const fail = (message: string) => {
-  return new RestResponse<null>(1001, null, message);
+  return new RestResponse<any>(500, {}, message);
 };

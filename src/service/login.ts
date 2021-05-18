@@ -3,8 +3,12 @@ import { LoginParam } from "../model";
 
 const tableName = `tb_user`;
 
-export const login = (param: LoginParam): Promise<string> => {
+type CountUser = {
+  cnt: number;
+};
+
+export const login = (param: LoginParam): Promise<Array<CountUser>> => {
   return query(
-    `select count(*) from ${tableName} where username = ${param.username} and password = ${param.password}`
+    `select count(*) as cnt from ${tableName} where username = '${param.username}' and password = '${param.password}'`
   );
 };

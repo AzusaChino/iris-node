@@ -9,6 +9,8 @@ export const querySection = (): Promise<Array<Section>> => {
 
 export const insertSection = (section: Section): Promise<string> => {
   return query(
-    `insert into ${tableName} values(${section.id}, ${section.name}, ${section.src})`
+    `insert into ${tableName} values('${section.id}', '${section.name}', '${
+      section.src || ""
+    }')`
   );
 };

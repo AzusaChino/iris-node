@@ -9,10 +9,10 @@ RecordRouter.get("/record/:sid", (req, res, next) => {
   const sid = req.params["sid"];
   queryRecord(sid)
     .then((r) => {
-      res.status(200).json(ok(r));
+      res.status(200).json(ok({ data: r }));
     })
     .catch((e) => {
-      res.status(500).json(fail("查询record失败"));
+      res.status(500).json(fail({ message: "查询record失败" }));
     });
 });
 
@@ -21,10 +21,10 @@ RecordRouter.post("/record", (req, res, next) => {
   record.id = uuid();
   insertRecord(record)
     .then(() => {
-      res.status(200).json(ok("ok"));
+      res.status(200).json(ok({ message: "新增成功" }));
     })
     .catch((e) => {
-      res.status(500).json(fail("新增record失败"));
+      res.status(500).json(fail({ message: "新增record失败" }));
     });
 });
 

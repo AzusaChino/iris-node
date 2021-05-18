@@ -8,10 +8,10 @@ const SectionRouter = Router();
 SectionRouter.get("/section", (req: Request, res: Response) => {
   querySection()
     .then((r) => {
-      res.status(200).json(ok(r));
+      res.status(200).json(ok({ data: r }));
     })
     .catch(() => {
-      res.status(500).json(fail("查询section失败"));
+      res.status(500).json(fail({ message: "查询section失败" }));
     });
 });
 
@@ -20,10 +20,10 @@ SectionRouter.post("/section", (req: Request, res: Response) => {
   section.id = uuid();
   insertSection(section)
     .then((r) => {
-      res.status(200).json(ok(r));
+      res.status(200).json(ok({ message: "新增成功" }));
     })
     .catch(() => {
-      res.status(500).json(fail("查询section失败"));
+      res.status(500).json(fail({ message: "查询section失败" }));
     });
 });
 

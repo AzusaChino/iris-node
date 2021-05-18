@@ -18,7 +18,7 @@ export const errorHandler = (
   if (res.headersSent) {
     next(err);
   }
-  res.status(500).json(fail(err.message));
+  res.status(500).json(fail({ message: err.message }));
 };
 
 export default AppRouter;

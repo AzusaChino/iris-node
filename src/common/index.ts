@@ -10,10 +10,20 @@ class RestResponse<T> {
   }
 }
 
-export const ok = (data: any) => {
-  return new RestResponse<any>(200, data, "success");
+type Response = {
+  code?: number;
+  data?: any;
+  message?: string;
 };
 
-export const fail = (message: string) => {
-  return new RestResponse<any>(500, {}, message);
+export const ok = (r: Response) => {
+  return new RestResponse<any>(
+    r.code || 200,
+    r.data || {},
+    r.message || "success"
+  );
+};
+
+export const fail = (r: Response) => {
+  return new RestResponse<any>(r.code || 500, {}, r.message || "failed");
 };

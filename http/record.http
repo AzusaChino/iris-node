@@ -1,0 +1,12 @@
+### create record
+POST http://127.0.0.1:3030/api/record
+Content-Type: application/json
+
+{
+    "sid":"1",
+    "name":"拳愿阿修罗",
+    "date":"1621180800",
+    "episode": "99",
+    "star": "5",
+    "comment": "好看"
+}

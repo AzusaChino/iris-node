@@ -11,6 +11,7 @@ const app = express();
 const port = process.env.APP_PORT || 5000;
 
 app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 app.use(errorHandler);
 app.use("/api", AppRouter);
 

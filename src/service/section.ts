@@ -1,13 +1,13 @@
 import { Section } from "../model";
-import ErrorHandler from "../model/error-handler";
 import pool from "../utils/db";
+import { CommonError } from "../common/errors";
 
 const tableName = `tb_section`;
 
 export const querySection = (): Array<Section> => {
   pool.query(`select * from ${tableName}`, (err, results) => {
     if (err) {
-      throw new ErrorHandler(1002, "");
+      throw new CommonError(1002, "查询section失败");
     }
     return results;
   });

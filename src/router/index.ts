@@ -1,21 +1,25 @@
-import { Router, Request, Response } from "express";
+import { Router, Request, Response, NextFunction } from "express";
 import LoginRouter from "./login";
 import SectionRouter from "./section";
 import RecordRouter from "./record";
-import ErrorHandler from "../model/error-handler";
 
 const AppRouter = Router();
 
 AppRouter.use(LoginRouter, SectionRouter, RecordRouter);
 
+// common error handler
 export const errorHandler = (
-  err: ErrorHandler,
+  err: Error,
   req: Request,
-  res: Response
+  res: Response,
+  next: NextFunction
 ) => {
-  res.status(err.statusCode || 500).json({
+  if (res.headersSent) {
+    next(err);
+  }
+  res.status(500).json({
     status: "error",
-    statusCode: err.statusCode,
+    statusCode: 500,
     message: err.message,
   });
 };

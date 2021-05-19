@@ -1,6 +1,7 @@
 ### create record
 POST http://127.0.0.1:3030/api/record
 Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImF6IiwiaWF0IjoxNjIxNDA2NjY3fQ.Br5A15t0pW2a0GKk92SbLAVtxVgikEyBTMNlGjzkezc
 
 {
     "sid":"1",
@@ -10,3 +11,6 @@ Content-Type: application/json
     "star": "5",
     "comment": "好看"
 }
+
+### get record
+GET http://127.0.0.1:3030/api/record/1

@@ -27,3 +27,18 @@ export const ok = (r: Response) => {
 export const fail = (r: Response) => {
   return new RestResponse<any>(r.code || 500, {}, r.message || "failed");
 };
+
+type Count = {
+  cnt: number;
+};
+
+export type CountResult = Array<Count>;
+
+export const accessSecret = "azusawakohane";
+export const refreshSecret = "nakanoazusa";
+// as local cache
+export const refreshTokens: Array<String> = [];
+
+export type JwtPayLoad = {
+  username: string;
+};

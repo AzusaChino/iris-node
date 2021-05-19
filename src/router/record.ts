@@ -2,10 +2,11 @@ import { Router } from "express";
 import { ok, fail } from "../common";
 import { queryRecord, insertRecord } from "../service/record";
 import { uuid } from "../utils";
+import authHandler from "../middleware/auth";
 
 const RecordRouter = Router();
 
-RecordRouter.get("/record/:sid", (req, res, next) => {
+RecordRouter.get("/record/:sid", authHandler, (req, res, next) => {
   const sid = req.params["sid"];
   queryRecord(sid)
     .then((r) => {
@@ -16,7 +17,7 @@ RecordRouter.get("/record/:sid", (req, res, next) => {
     });
 });
 
-RecordRouter.post("/record", (req, res, next) => {
+RecordRouter.post("/record", authHandler, (req, res, next) => {
   const record = req.body;
   record.id = uuid();
   insertRecord(record)

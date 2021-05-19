@@ -2,10 +2,11 @@ import { Router, Request, Response } from "express";
 import { insertSection, querySection } from "../service/section";
 import { ok, fail } from "../common/index";
 import { uuid } from "../utils";
+import authHandler from "../middleware/auth";
 
 const SectionRouter = Router();
 
-SectionRouter.get("/section", (req: Request, res: Response) => {
+SectionRouter.get("/section", authHandler, (req: Request, res: Response) => {
   querySection()
     .then((r) => {
       res.status(200).json(ok({ data: r }));
@@ -15,7 +16,7 @@ SectionRouter.get("/section", (req: Request, res: Response) => {
     });
 });
 
-SectionRouter.post("/section", (req: Request, res: Response) => {
+SectionRouter.post("/section", authHandler, (req: Request, res: Response) => {
   const section = req.body;
   section.id = uuid();
   insertSection(section)

@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
-import { accessSecret } from "../common";
+import { accessSecret, JwtPayLoad } from "../common";
 
 const authHandler = (req: Request, res: Response, next: NextFunction) => {
   const token = req.headers.authorization;
@@ -9,6 +9,8 @@ const authHandler = (req: Request, res: Response, next: NextFunction) => {
       if (err) {
         return res.sendStatus(403);
       }
+      // 通过request对象，向下传递校验后的username
+      (req as any).username = (payload as JwtPayLoad).username;
       next();
     });
   } else {

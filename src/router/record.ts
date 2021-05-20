@@ -8,7 +8,9 @@ const RecordRouter = Router();
 
 RecordRouter.get("/record/:sid", authHandler, (req, res, next) => {
   const sid = req.params["sid"];
-  queryRecord(sid)
+  const { username } = req as any;
+  // 根据sid和username，查询个人存储的record
+  queryRecord({ sid, username })
     .then((r) => {
       res.status(200).json(ok({ data: r }));
     })

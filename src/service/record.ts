@@ -4,8 +4,15 @@ import { CountResult } from "../common";
 
 const tableName = `tb_record`;
 
-export const queryRecord = async (sid: string): Promise<Array<Record>> => {
-  return query(`select * from ${tableName} where sid = '${sid}'`);
+type RecordSearchParam = {
+  sid: string;
+  username: string;
+};
+
+export const queryRecord = async (
+  param: RecordSearchParam
+): Promise<Array<Record>> => {
+  return query(`select * from ${tableName} where sid = '${param.sid}'`);
 };
 
 export const insertRecord = async (record: Record): Promise<string> => {

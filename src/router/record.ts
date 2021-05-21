@@ -21,7 +21,9 @@ RecordRouter.get("/record/:sid", authHandler, (req, res, next) => {
 
 RecordRouter.post("/record", authHandler, (req, res, next) => {
   const record = req.body;
+  const { username } = req as any;
   record.id = uuid();
+  record.uname = username;
   insertRecord(record)
     .then(() => {
       res.status(200).json(ok({ message: "新增成功" }));

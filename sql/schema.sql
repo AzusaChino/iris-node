@@ -24,6 +24,7 @@ create table if not exists `tb_section` (
 create table if not exists `tb_record` (
     `id` varchar(32) not null primary key,
     `sid` varchar(32) not null comment 'sectionId',
+    `uname` varchar(32) not null comment '用户名称',
     `name` varchar(200) not null comment '作品标题',
     `date` varchar(13) not null comment '记录日期',
     `season` varchar(10) comment '季数',
@@ -32,3 +33,6 @@ create table if not exists `tb_record` (
     `star` varchar(1) comment '推荐度',
     `comment` varchar(300) comment '个人评价'
 ) engine = InnoDB comment '基础记录表';
+
+-- 查询条件建立索引
+create index tb_record_sid_uname_index on `iris`.`tb_record` (`sid`, `uname`);

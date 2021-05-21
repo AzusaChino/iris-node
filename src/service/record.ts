@@ -12,7 +12,9 @@ type RecordSearchParam = {
 export const queryRecord = async (
   param: RecordSearchParam
 ): Promise<Array<Record>> => {
-  return query(`select * from ${tableName} where sid = '${param.sid}'`);
+  return query(
+    `select * from ${tableName} where sid = '${param.sid}' and uname = '${param.username}'`
+  );
 };
 
 export const insertRecord = async (record: Record): Promise<string> => {
@@ -29,11 +31,11 @@ export const insertRecord = async (record: Record): Promise<string> => {
     return query(update);
   }
   // 2. 不存在的情况，进行插入
-  const sql = `insert into ${tableName}(id, sid, name, date, season, episode, visual, star, comment) 
-  values('${record.id}','${record.sid}', '${record.name}', '${record.date}', '${
-    record.season || ""
-  }', '${record.episode || ""}', '${record.visual || ""}', '${
-    record.star || ""
-  }', '${record.comment || ""}')`;
+  const sql = `insert into ${tableName}(id, sid, uname, name, date, season, episode, visual, star, comment) 
+  values('${record.id}','${record.sid}', '${record.uname}', '${
+    record.name
+  }', '${record.date}', '${record.season || ""}', '${record.episode || ""}', '${
+    record.visual || ""
+  }', '${record.star || ""}', '${record.comment || ""}')`;
   return query(sql);
 };

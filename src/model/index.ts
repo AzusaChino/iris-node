@@ -22,6 +22,7 @@ export type Section = {
 export type Record = {
   id?: string;
   sid: string;
+  uname: string;
   name: string;
   date: string;
   season?: string;

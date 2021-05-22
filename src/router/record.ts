@@ -6,7 +6,7 @@ import authHandler from "../middleware/auth";
 
 const RecordRouter = Router();
 
-RecordRouter.get("/record/:sid", authHandler, (req, res, next) => {
+RecordRouter.get("/:sid/record", authHandler, (req, res, next) => {
   const sid = req.params["sid"];
   const { username } = req as any;
   // 根据sid和username，查询个人存储的record

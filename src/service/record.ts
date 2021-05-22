@@ -23,7 +23,7 @@ export const insertRecord = async (record: Record): Promise<string> => {
   const res: CountResult = await query(checkExist);
   if (res[0].cnt == 1) {
     const update = `update ${tableName} set date = '${
-      record.date
+      record.timestamp
     }', season = '${record.season || ""}',
     episode = '${record.episode || ""}', visual = '${
       record.visual || ""
@@ -31,11 +31,13 @@ export const insertRecord = async (record: Record): Promise<string> => {
     return query(update);
   }
   // 2. 不存在的情况，进行插入
-  const sql = `insert into ${tableName}(id, sid, uname, name, date, season, episode, visual, star, comment) 
+  const sql = `insert into ${tableName}(id, sid, uname, name, timestamp, season, episode, visual, star, comment) 
   values('${record.id}','${record.sid}', '${record.uname}', '${
     record.name
-  }', '${record.date}', '${record.season || ""}', '${record.episode || ""}', '${
-    record.visual || ""
-  }', '${record.star || ""}', '${record.comment || ""}')`;
+  }', '${record.timestamp}', '${record.season || ""}', '${
+    record.episode || ""
+  }', '${record.visual || ""}', '${record.star || ""}', '${
+    record.comment || ""
+  }')`;
   return query(sql);
 };

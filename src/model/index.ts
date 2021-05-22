@@ -24,10 +24,10 @@ export type Record = {
   sid: string;
   uname: string;
   name: string;
-  date: string;
+  timestamp: number;
   season?: string;
   episode?: string;
   visual?: string;
-  star?: string;
+  star?: number;
   comment?: string;
 };

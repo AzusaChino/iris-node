@@ -7,13 +7,16 @@ const tableName = `tb_record`;
 type RecordSearchParam = {
   sid: string;
   username: string;
+  pageIndex: any;
+  pageSize: any;
 };
 
 export const queryRecord = async (
   param: RecordSearchParam
 ): Promise<Array<Record>> => {
+  const limit = (((param.pageIndex as number) - 1) * param.pageSize) as number;
   return query(
-    `select * from ${tableName} where sid = '${param.sid}' and uname = '${param.username}'`
+    `select * from ${tableName} where sid = '${param.sid}' and uname = '${param.username}' limit ${limit}, ${param.pageSize}`
   );
 };
 

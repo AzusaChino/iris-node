@@ -1,7 +1,11 @@
-export type LoginParam = {
+export interface LoginParam {
   username: string;
   password: string;
-};
+}
+
+export interface RegisterParam extends LoginParam {
+  email: string;
+}
 
 export type User = {
   id?: string;

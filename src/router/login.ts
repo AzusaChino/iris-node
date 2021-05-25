@@ -1,5 +1,5 @@
 import { Router, Request, Response } from "express";
-import { login } from "../service/login";
+import { login, register } from "../service/login";
 import {
   ok,
   fail,
@@ -9,7 +9,7 @@ import {
   JwtPayLoad,
 } from "../common";
 import jwt from "jsonwebtoken";
-import { LoginParam } from "../model";
+import { LoginParam, RegisterParam } from "../model";
 
 const LoginRouter = Router();
 
@@ -63,6 +63,17 @@ LoginRouter.post("/token", (req: Request, res: Response) => {
 
     res.json(ok({ data: accessToken, message: "token 刷新成功" }));
   });
+});
+
+LoginRouter.post("/register", (req, res) => {
+  const registerParam: RegisterParam = req.body;
+  register(registerParam)
+    .then(() => {
+      res.status(200).json(ok({ message: "注册成功" }));
+    })
+    .catch((e) => {
+      res.status(500).json(fail({ message: "注册失败" }));
+    });
 });
 
 export default LoginRouter;

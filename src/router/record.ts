@@ -6,7 +6,7 @@ import authHandler from "../middleware/auth";
 
 const RecordRouter = Router();
 
-RecordRouter.get("/:sid/record", authHandler, (req, res, next) => {
+RecordRouter.get("/:sid/record", authHandler, (req, res) => {
   const sid = req.params["sid"];
   const { pageIndex, pageSize } = req.query;
   const { username } = req as any;
@@ -20,7 +20,7 @@ RecordRouter.get("/:sid/record", authHandler, (req, res, next) => {
     });
 });
 
-RecordRouter.post("/record", authHandler, (req, res, next) => {
+RecordRouter.post("/record", authHandler, (req, res) => {
   const record = req.body;
   const { username } = req as any;
   record.id = uuid();

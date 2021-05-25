@@ -1,6 +1,6 @@
 import { Record } from "../model";
 import { query } from "../utils/db";
-import { RecordSearchParam } from "../common";
+import { InsertResult, RecordSearchParam, UpdateResult } from "../common";
 
 const tableName = `tb_record`;
 
@@ -13,7 +13,9 @@ export const queryRecord = async (
   );
 };
 
-export const insertRecord = async (record: Record): Promise<string> => {
+export const insertRecord = async (
+  record: Record
+): Promise<InsertResult | UpdateResult> => {
   // 1. 已存在的情况，进行更新
   const checkExist = `select id from ${tableName} where name = '${record.name}'`;
   const res: Array<{ id: string }> = await query(checkExist);
@@ -30,7 +32,7 @@ export const insertRecord = async (record: Record): Promise<string> => {
   return query(sql);
 };
 
-export const updateRecord = async (record: Record): Promise<string> => {
+export const updateRecord = async (record: Record): Promise<UpdateResult> => {
   return query(generateUpdateSql(record));
 };
 

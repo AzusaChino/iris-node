@@ -49,3 +49,11 @@ export type RecordSearchParam = {
   pageIndex: any;
   pageSize: any;
 };
+
+export interface InsertResult {
+  insertId: string;
+}
+
+export interface UpdateResult {
+  affectedRows: number;
+}

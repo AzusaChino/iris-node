@@ -42,3 +42,10 @@ export const refreshTokens: Array<String> = [];
 export type JwtPayLoad = {
   username: string;
 };
+
+export type RecordSearchParam = {
+  sid: string;
+  username: string;
+  pageIndex: any;
+  pageSize: any;
+};

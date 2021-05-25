@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { ok, fail } from "../common";
-import { queryRecord, insertRecord } from "../service/record";
+import { queryRecord, insertRecord, updateRecord } from "../service/record";
 import { uuid } from "../utils";
 import authHandler from "../middleware/auth";
 
@@ -31,6 +31,17 @@ RecordRouter.post("/record", authHandler, (req, res, next) => {
     })
     .catch((e) => {
       res.status(500).json(fail({ message: "新增record失败" }));
+    });
+});
+
+RecordRouter.put("/record", authHandler, (req, res) => {
+  const record = req.body;
+  updateRecord(record)
+    .then(() => {
+      res.status(200).json(ok({ message: "更新成功" }));
+    })
+    .catch((e) => {
+      res.status(500).json(fail({ message: "更新失败" }));
     });
 });
 

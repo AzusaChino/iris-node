@@ -14,20 +14,21 @@ export type User = {
 };
 
 export type Section = {
-  id?: string;
+  id: string;
   name: string;
-  src: string;
+  visual?: string;
 };
 
 export type Record = {
-  id?: string;
+  id: string;
   sid: string;
   uname: string;
   name: string;
+  episode: string;
+  status: string;
+  watched: string;
   timestamp: number;
-  season?: string;
-  episode?: string;
-  visual?: string;
   star?: number;
+  visual?: string;
   comment?: string;
 };

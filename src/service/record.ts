@@ -1,15 +1,8 @@
 import { Record } from "../model";
 import { query } from "../utils/db";
-import { CountResult } from "../common";
+import { RecordSearchParam } from "../common";
 
 const tableName = `tb_record`;
-
-type RecordSearchParam = {
-  sid: string;
-  username: string;
-  pageIndex: any;
-  pageSize: any;
-};
 
 export const queryRecord = async (
   param: RecordSearchParam
@@ -22,25 +15,45 @@ export const queryRecord = async (
 
 export const insertRecord = async (record: Record): Promise<string> => {
   // 1. 已存在的情况，进行更新
-  const checkExist = `select count(*) as cnt from ${tableName} where name = '${record.name}'`;
-  const res: CountResult = await query(checkExist);
-  if (res[0].cnt == 1) {
-    const update = `update ${tableName} set date = '${
-      record.timestamp
-    }', season = '${record.season || ""}',
-    episode = '${record.episode || ""}', visual = '${
-      record.visual || ""
-    }', start = '${record.star || ""}', comment = '${record.comment || ""}'`;
-    return query(update);
+  const checkExist = `select id from ${tableName} where name = '${record.name}'`;
+  const res: Array<{ id: string }> = await query(checkExist);
+  if (res.length == 1) {
+    record.id = res[0].id;
+    return query(generateUpdateSql(record));
   }
   // 2. 不存在的情况，进行插入
-  const sql = `insert into ${tableName}(id, sid, uname, name, timestamp, season, episode, visual, star, comment) 
-  values('${record.id}','${record.sid}', '${record.uname}', '${
-    record.name
-  }', '${record.timestamp}', '${record.season || ""}', '${
-    record.episode || ""
-  }', '${record.visual || ""}', '${record.star || ""}', '${
-    record.comment || ""
-  }')`;
+  const sql = `insert into ${tableName}(id, sid, uname, name, episode, status, watched, timestamp, star, visual, comment) 
+  values('${record.id}','${record.sid}', '${record.uname}', 
+  '${record.name}', '${record.episode}', '${record.status}',
+  '${record.watched}','${record.timestamp}', '${record.star || ""}', 
+  '${record.visual || ""}','${record.comment || ""}')`;
   return query(sql);
+};
+
+export const updateRecord = async (record: Record): Promise<string> => {
+  return query(generateUpdateSql(record));
+};
+
+const generateUpdateSql = (record: Record): string => {
+  let optionalUpdate = "";
+  if (record.status) {
+    optionalUpdate += `, status = '${record.status}'`;
+  }
+  if (record.watched) {
+    optionalUpdate += `, watched = '${record.watched}'`;
+  }
+  if (record.star) {
+    optionalUpdate += `, star = '${record.star}'`;
+  }
+  if (record.visual) {
+    optionalUpdate += `, visual = '${record.visual}'`;
+  }
+  if (record.comment) {
+    optionalUpdate += `, comment = '${record.comment}'`;
+  }
+  return `update ${tableName} set
+  episode = '${record.episode}', 
+  timestamp = '${record.timestamp}'
+  ${optionalUpdate}
+  where id = '${record.id}'`;
 };

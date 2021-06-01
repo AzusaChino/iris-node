@@ -1,0 +1,7 @@
+version: "3.5"
+
+services:
+  node:
+    image: azusachino/iris-node:latest
+    ports:
+      - 3333:3333

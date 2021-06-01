@@ -20,21 +20,22 @@ RecordRouter.get("/:sid/record", authHandler, (req, res) => {
     });
 });
 
-RecordRouter.post("/record", authHandler, (req, res) => {
+RecordRouter.post("/:sid/record", authHandler, (req, res) => {
   const record = req.body;
   const { username } = req as any;
-  record.id = uuid();
+  const id = uuid();
+  record.id = id;
   record.uname = username;
   insertRecord(record)
     .then(() => {
-      res.status(200).json(ok({ message: "新增成功" }));
+      res.status(200).json(ok({ message: "新增成功", data: id }));
     })
     .catch((e) => {
       res.status(500).json(fail({ message: "新增record失败" }));
     });
 });
 
-RecordRouter.put("/record", authHandler, (req, res) => {
+RecordRouter.put("/:sid/record", authHandler, (req, res) => {
   const record = req.body;
   updateRecord(record)
     .then(() => {

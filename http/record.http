@@ -1,15 +1,17 @@
 ### create record
-POST http://127.0.0.1:3030/api/record
+POST http://127.0.0.1:3333/api/1/record
 Content-Type: application/json
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImF6IiwiaWF0IjoxNjIxNDA2NjY3fQ.Br5A15t0pW2a0GKk92SbLAVtxVgikEyBTMNlGjzkezc
 
 {
     "sid":"1",
-    "name":"拳愿阿修罗",
-    "date":"1621180800",
-    "episode": "99",
-    "star": "5",
-    "comment": "好看"
+    "name":"Jagan",
+    "episode": "第147话",
+    "timestamp":1621180800000,
+    "star": "4.5",
+    "status": "0",
+    "watched": "0",
+    "comment": "射爆茄子"
 }
 
 ### get record

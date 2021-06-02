@@ -15,5 +15,5 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImF6IiwiaWF0
 }
 
 ### get record
-GET http://127.0.0.1:3333/api/1/record
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImF6IiwiaWF0IjoxNjIxNjUzOTAyLCJleHAiOjE2MjE2NTU3MDJ9.ACIe-1hlfqQLuzcyLZFEozn0zZG72-DWZ7S-feZA2I4
+GET http://127.0.0.1:3333/api/1/record?pageIndex=1&pageSize=5
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImF6IiwiaWF0IjoxNjIyNjEyNzkwLCJleHAiOjE2MjI2MTQ1OTB9.VRXye2t_8Y-goZpSgmtviQFfnqM4gHIBMF8Qk-FWG-Q

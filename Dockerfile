@@ -1,5 +1,5 @@
 FROM mhart/alpine-node:16
-LABEL maintainer="azusachino.com"
+LABEL maintainer="az <azusachino@yahoo.com>"
 
 WORKDIR /app
 

@@ -6,6 +6,7 @@ dotenv.config({
 });
 
 const MYSQL_HOST = process.env.MYSQL_HOST as string;
+const MYSQL_PORT = Number(process.env.MYSQL_PORT);
 const MYSQL_USERNAME = process.env.MYSQL_USERNAME as string;
 const MYSQL_PASSWORD = process.env.MYSQL_PASSWORD as string;
 const MYSQL_DATABASE = process.env.MYSQL_DATABASE as string;
@@ -14,7 +15,7 @@ const pool = mysql.createPool({
   acquireTimeout: 5000,
   connectionLimit: 100,
   host: MYSQL_HOST,
-  port: 3306,
+  port: MYSQL_PORT,
   user: MYSQL_USERNAME,
   password: MYSQL_PASSWORD,
   database: MYSQL_DATABASE,

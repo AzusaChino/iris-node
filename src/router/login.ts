@@ -39,8 +39,8 @@ LoginRouter.post("/login", (req: Request, res: Response) => {
         res.status(500).json(fail({ message: "用户不存在" }));
       }
     })
-    .catch(() => {
-      res.status(500).json(fail({ message: "登陆失败" }));
+    .catch((e) => {
+      res.status(500).json(fail({ message: `登陆失败, ${e}` }));
     });
 });
 
@@ -72,7 +72,7 @@ LoginRouter.post("/register", (req, res) => {
       res.status(200).json(ok({ message: "注册成功" }));
     })
     .catch((e) => {
-      res.status(500).json(fail({ message: "注册失败" }));
+      res.status(500).json(fail({ message: `注册失败, ${e}` }));
     });
 });
 

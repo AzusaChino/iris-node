@@ -16,7 +16,7 @@ RecordRouter.get("/:sid/record", authHandler, (req, res) => {
       res.status(200).json(ok({ data: r }));
     })
     .catch((e) => {
-      res.status(500).json(fail({ message: "查询record失败" }));
+      res.status(500).json(fail({ message: `查询record失败, ${e}` }));
     });
 });
 
@@ -26,12 +26,13 @@ RecordRouter.post("/:sid/record", authHandler, (req, res) => {
   const id = uuid();
   record.id = id;
   record.uname = username;
+
   insertRecord(record)
     .then(() => {
       res.status(200).json(ok({ message: "新增成功", data: id }));
     })
     .catch((e) => {
-      res.status(500).json(fail({ message: "新增record失败" }));
+      res.status(500).json(fail({ message: `新增record失败, ${e}` }));
     });
 });
 
@@ -42,7 +43,7 @@ RecordRouter.put("/:sid/record", authHandler, (req, res) => {
       res.status(200).json(ok({ message: "更新成功" }));
     })
     .catch((e) => {
-      res.status(500).json(fail({ message: "更新失败" }));
+      res.status(500).json(fail({ message: `更新失败, ${e}` }));
     });
 });
 

@@ -11,8 +11,8 @@ SectionRouter.get("/section", authHandler, (req: Request, res: Response) => {
     .then((r) => {
       res.status(200).json(ok({ data: r }));
     })
-    .catch(() => {
-      res.status(500).json(fail({ message: "查询section失败" }));
+    .catch((e) => {
+      res.status(500).json(fail({ message: `查询section失败, ${e}` }));
     });
 });
 
@@ -23,8 +23,8 @@ SectionRouter.post("/section", authHandler, (req: Request, res: Response) => {
     .then((r) => {
       res.status(200).json(ok({ message: "新增成功" }));
     })
-    .catch(() => {
-      res.status(500).json(fail({ message: "查询section失败" }));
+    .catch((e) => {
+      res.status(500).json(fail({ message: `查询section失败, ${e}` }));
     });
 });
 

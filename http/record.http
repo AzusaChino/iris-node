@@ -1,19 +1,36 @@
 ### create record
-POST http://127.0.0.1:3333/api/1/record
+POST http://localhost:3333/api/1/record
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImF6IiwiaWF0IjoxNjIxNDA2NjY3fQ.Br5A15t0pW2a0GKk92SbLAVtxVgikEyBTMNlGjzkezc
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImF6IiwiaWF0IjoxNjIzOTk0OTg5LCJleHAiOjE2MjM5OTY3ODl9.x_s4-vtW-bXDi7Q5u0E_3zCr6HPuqXm4Xy4xwxBN9BI
 
 {
     "sid":"1",
-    "name":"Jagan",
-    "episode": "第147话",
+    "name":"test",
+    "episode": "S01E02",
     "timestamp":1621180800000,
-    "star": "4.5",
+    "star": "4",
     "status": "0",
     "watched": "0",
-    "comment": "射爆茄子"
+    "comment": "sample comment"
 }
 
 ### get record
 GET http://127.0.0.1:3333/api/1/record?pageIndex=1&pageSize=5
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImF6IiwiaWF0IjoxNjIyNjEyNzkwLCJleHAiOjE2MjI2MTQ1OTB9.VRXye2t_8Y-goZpSgmtviQFfnqM4gHIBMF8Qk-FWG-Q
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImF6IiwiaWF0IjoxNjIzOTk0OTg5LCJleHAiOjE2MjM5OTY3ODl9.x_s4-vtW-bXDi7Q5u0E_3zCr6HPuqXm4Xy4xwxBN9BI
+
+
+### 135
+POST http://1.117.150.135:3333/api/1/record
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImF6IiwiaWF0IjoxNjIzOTk0ODQ0LCJleHAiOjE2MjM5OTY2NDR9.SVM43I674M0dwGbcM3uRzGsANEjYKTxbttW63ycgjdY
+
+{
+    "sid":"1",
+    "name":"test",
+    "episode": "S01E02",
+    "timestamp":1621180800000,
+    "star": "4",
+    "status": "0",
+    "watched": "0",
+    "comment": "sample comment"
+}

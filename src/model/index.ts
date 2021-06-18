@@ -13,8 +13,8 @@ export type User = {
   email?: string;
   // password:string,
   avatar?: string;
-  vip: string;
-  status: string;
+  vip: number;
+  status: number;
 };
 
 export type Section = {
@@ -26,11 +26,11 @@ export type Section = {
 export type Record = {
   id: string;
   sid: string;
-  uname: string;
-  name: string;
+  username: string;
+  title: string;
   episode: string;
-  status: string;
-  watched: string;
+  status: number;
+  watched: number;
   timestamp: number;
   star?: number;
   visual?: string;

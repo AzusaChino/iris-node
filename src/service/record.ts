@@ -9,7 +9,7 @@ export const queryRecord = async (
 ): Promise<Array<Record>> => {
   const limit = (((param.pageIndex as number) - 1) * param.pageSize) as number;
   return query(
-    `select * from ${tableName} where sid = '${param.sid}' and uname = '${param.username}' limit ${limit}, ${param.pageSize}`
+    `select * from ${tableName} where sid = '${param.sid}' and username = '${param.username}' limit ${limit}, ${param.pageSize}`
   );
 };
 
@@ -17,16 +17,16 @@ export const insertRecord = async (
   record: Record
 ): Promise<InsertResult | UpdateResult> => {
   // 1. 已存在的情况，进行更新
-  const checkExist = `select id from ${tableName} where name = '${record.name}'`;
+  const checkExist = `select id from ${tableName} where title = '${record.title}'`;
   const res: Array<{ id: string }> = await query(checkExist);
   if (res.length == 1) {
     record.id = res[0].id;
     return query(generateUpdateSql(record));
   }
   // 2. 不存在的情况，进行插入
-  const sql = `insert into ${tableName}(id, sid, uname, name, episode, status, watched, timestamp, star, visual, comment) 
-  values('${record.id}','${record.sid}', '${record.uname}', 
-  '${record.name}', '${record.episode}', '${record.status}',
+  const sql = `insert into ${tableName}(id, sid, username, title, episode, status, watched, timestamp, star, visual, comment) 
+  values('${record.id}','${record.sid}', '${record.username}', 
+  '${record.title}', '${record.episode}', '${record.status}',
   '${record.watched}','${record.timestamp}', '${record.star || ""}', 
   '${record.visual || ""}','${record.comment || ""}')`;
   return query(sql);

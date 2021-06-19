@@ -25,7 +25,7 @@ RecordRouter.post("/:sid/record", authHandler, (req, res) => {
   const { username } = req as any;
   const id = uuid();
   record.id = id;
-  record.uname = username;
+  record.username = username;
 
   insertRecord(record)
     .then(() => {

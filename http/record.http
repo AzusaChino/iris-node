@@ -1,14 +1,14 @@
 ### create record
 POST http://localhost:3333/api/1/record
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImF6IiwiaWF0IjoxNjIzOTk0OTg5LCJleHAiOjE2MjM5OTY3ODl9.x_s4-vtW-bXDi7Q5u0E_3zCr6HPuqXm4Xy4xwxBN9BI
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImF6IiwiaWF0IjoxNjI0MDY3NjQwLCJleHAiOjE2MjQwNjk0NDB9.eklHlJ4FSrSkgHgQ2bdS0eXWFIIiBikst3eVb7oA1yI
 
 {
     "sid":"1",
-    "name":"test",
+    "title":"test",
     "episode": "S01E02",
     "timestamp":1621180800000,
-    "star": "4",
+    "star": "4.0",
     "status": "0",
     "watched": "0",
     "comment": "sample comment"
@@ -16,8 +16,7 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImF6IiwiaWF0
 
 ### get record
 GET http://127.0.0.1:3333/api/1/record?pageIndex=1&pageSize=5
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImF6IiwiaWF0IjoxNjIzOTk0OTg5LCJleHAiOjE2MjM5OTY3ODl9.x_s4-vtW-bXDi7Q5u0E_3zCr6HPuqXm4Xy4xwxBN9BI
-
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImF6IiwiaWF0IjoxNjI0MDY3NjQwLCJleHAiOjE2MjQwNjk0NDB9.eklHlJ4FSrSkgHgQ2bdS0eXWFIIiBikst3eVb7oA1yI
 
 ### 135
 POST http://1.117.150.135:3333/api/1/record
